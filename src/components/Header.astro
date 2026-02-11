@@ -3,22 +3,18 @@ const currentPath = Astro.url.pathname;
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/ctf', label: 'CTF' },
-  { href: '/contact', label: 'Contact' },
 ];
 ---
 
 <header class="header">
   <div class="container header-inner">
-    <a href="/" class="logo">
-      <span class="logo-bracket">[</span>
-      <span class="logo-text">Jst3r</span>
-      <span class="logo-bracket">]</span>
-    </a>
-    <nav class="nav" id="nav">
+    <div class="header-left">
+      <a href="/" class="logo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">Jst3r</span>
+        <span class="logo-bracket">]</span>
+      </a>
+      <nav class="nav" id="nav">
       {navLinks.map((link) => (
         <a
           href={link.href}
@@ -27,7 +23,8 @@ const navLinks = [
           {link.label}
         </a>
       ))}
-    </nav>
+      </nav>
+    </div>
     <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="3" y1="6" x2="21" y2="6" class="line-top" />
@@ -54,6 +51,12 @@ const navLinks = [
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
 
   .logo {

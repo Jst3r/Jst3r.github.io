@@ -19,8 +19,8 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 ---
 
 <BaseLayout title={title} description={description}>
-  <article class="blog-post section">
-    <div class="container">
+  <article class="blog-post">
+    <div class="article-container">
       <header class="post-header">
         <div class="post-meta">
           <time datetime={date}>{formattedDate}</time>
@@ -41,7 +41,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
         <slot />
       </div>
       <footer class="post-footer">
-        <a href="/blog" class="back-link">
+        <a href="/" class="back-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
           Back to all posts
         </a>
@@ -51,21 +51,33 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 </BaseLayout>
 
 <style>
+  .blog-post {
+    padding: 3rem 0;
+    background: var(--bg-primary);
+  }
+
+  .article-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
   .post-header {
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: var(--border-width) solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
 
   .post-meta {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
     margin-bottom: 1rem;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
   .meta-sep {
@@ -73,17 +85,18 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   }
 
   .post-title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 900;
-    line-height: 1.15;
+    line-height: 1.2;
     margin-bottom: 0.75rem;
     text-transform: uppercase;
+    letter-spacing: -0.02em;
   }
 
   .post-description {
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
     margin-bottom: 1rem;
   }
 
@@ -96,7 +109,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   .post-footer {
     margin-top: 4rem;
     padding-top: 2rem;
-    border-top: var(--border-width) solid var(--border);
+    border-top: 1px solid var(--border);
   }
 
   .back-link {

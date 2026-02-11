@@ -47,16 +47,11 @@ ul, ol { list-style: none; }
 
 .tag {
   display: inline-block; padding: 0.2rem 0.6rem;
-  background: var(--accent-dim); color: var(--accent);
-  border: var(--border-width) solid var(--accent);
-  font-size: 0.7rem; font-weight: 700; font-family: var(--font-mono);
+  background: transparent; color: var(--text-muted);
+  border: 1px solid var(--border);
+  font-size: 0.7rem; font-weight: 500; font-family: var(--font-mono);
   text-transform: uppercase; letter-spacing: 0.04em;
 }
-.tag--red { background: rgba(239,68,68,0.15); color: var(--red); border-color: var(--red); }
-.tag--green { background: rgba(34,197,94,0.15); color: var(--green); border-color: var(--green); }
-.tag--yellow { background: rgba(250,204,21,0.15); color: var(--yellow); border-color: var(--yellow); }
-.tag--purple { background: rgba(192,132,252,0.15); color: var(--purple); border-color: var(--purple); }
-.tag--cyan { background: rgba(34,211,238,0.15); color: var(--cyan); border-color: var(--cyan); }
 
 pre {
   background: var(--bg-secondary) !important;
