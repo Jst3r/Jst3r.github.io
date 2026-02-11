@@ -32,11 +32,52 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </a>
       </div>
 
+      <div class="form-section">
+        <h2 class="form-heading">Send me a message</h2>
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="c9b239a8-c1dd-4b6d-8ce5-f2ed9be4390f" />
+          <input type="hidden" name="subject" value="New message from jst3r.github.io" />
+          <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+          <!-- Honeypot spam protection -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="What's on your mind?" required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-loading" style="display:none">Sending...</span>
+          </button>
+        </form>
+
+        <div id="form-success" class="form-status success" style="display:none">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Message sent! I'll get back to you soon.
+        </div>
+
+        <div id="form-error" class="form-status error" style="display:none">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          Something went wrong. Try DMing me on X instead.
+        </div>
+      </div>
+
       <div class="contact-note">
         <p>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           For CTF team invites, collaboration, or anything security-related,
-          DM me on X. I usually respond within a day.
+          you can also DM me on X. I usually respond within a day.
         </p>
       </div>
     </div>
@@ -112,6 +153,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .contact-note {
+    margin-top: 2rem;
     padding: 1rem 1.25rem;
     background: var(--accent-dim);
     border: 1px solid rgba(59, 130, 246, 0.15);
@@ -132,4 +174,152 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     flex-shrink: 0;
     margin-top: 0.125rem;
   }
+
+  /* Form */
+  .form-section {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .form-heading {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.375rem;
+    font-family: var(--font-mono);
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-family: inherit;
+    transition: all var(--transition);
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-dim);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent);
+    border: none;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .submit-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .form-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.875rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+  }
+
+  .form-status.success {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+  }
+
+  .form-status.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+  }
 </style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const btnText = submitBtn.querySelector('.btn-text') as HTMLElement;
+  const btnLoading = submitBtn.querySelector('.btn-loading') as HTMLElement;
+  const successMsg = document.getElementById('form-success') as HTMLElement;
+  const errorMsg = document.getElementById('form-error') as HTMLElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline';
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        form.reset();
+        successMsg.style.display = 'flex';
+      } else {
+        errorMsg.style.display = 'flex';
+      }
+    } catch {
+      errorMsg.style.display = 'flex';
+    } finally {
+      submitBtn.disabled = false;
+      btnText.style.display = 'inline';
+      btnLoading.style.display = 'none';
+    }
+  });
+</script>
