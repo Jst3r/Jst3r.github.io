@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = (await getCollection('blog'))
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+  return paginate(posts, { pageSize: 10 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
+// Get unique tags from ALL posts (not just current page)
+const allPosts = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))];
+---
+
+<BaseLayout title={`Blog${page.currentPage > 1 ? ` — Page ${page.currentPage}` : ''}`} description="Writeups, articles, and notes on cybersecurity, reverse engineering, and CTF challenges">
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Blog</h1>
+      <p class="section-subtitle">Writeups, research notes, and security articles</p>
+
+      {allTags.length > 0 && (
+        <div class="blog-filters">
+          <button class="filter-btn active" data-tag="all">All</button>
+          {allTags.map((tag) => (
+            <button class="filter-btn" data-tag={tag}>{tag}</button>
+          ))}
+        </div>
+      )}
+
+      <div class="posts-list" id="posts-list">
+        {page.data.map((post) => (
+          <div class="post-item" data-tags={JSON.stringify(post.data.tags || [])}>
+            <PostCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              tags={post.data.tags}
+              slug={post.slug}
+              readTime={post.data.readTime}
+            />
+          </div>
+        ))}
+      </div>
+
+      {page.data.length === 0 && (
+        <div class="empty-state">
+          <p>No posts yet. Check back soon!</p>
+        </div>
+      )}
+
+      {page.lastPage > 1 && (
+        <nav class="pagination">
+          {page.url.prev ? (
+            <a href={page.url.prev} class="pagination-btn">
+              <span>&larr;</span> Previous
+            </a>
+          ) : (
+            <span class="pagination-btn disabled">
+              <span>&larr;</span> Previous
+            </span>
+          )}
+
+          <div class="pagination-pages">
+            {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((num) => (
+              <a
+                href={num === 1 ? '/blog/' : `/blog/${num}/`}
+                class={`pagination-page ${num === page.currentPage ? 'active' : ''}`}
+              >
+                {num}
+              </a>
+            ))}
+          </div>
+
+          {page.url.next ? (
+            <a href={page.url.next} class="pagination-btn">
+              Next <span>&rarr;</span>
+            </a>
+          ) : (
+            <span class="pagination-btn disabled">
+              Next <span>&rarr;</span>
+            </span>
+          )}
+        </nav>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-filters {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    padding: 0.375rem 0.875rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .filter-btn:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+  }
+
+  .filter-btn.active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .posts-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .post-item {
+    transition: opacity 200ms ease, transform 200ms ease;
+  }
+
+  .post-item.hidden {
+    display: none;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 0;
+    color: var(--text-muted);
+  }
+
+  /* Pagination */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  a.pagination-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .pagination-btn.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .pagination-pages {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .pagination-page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  .pagination-page:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+  }
+
+  .pagination-page.active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .pagination {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.post-item');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tag = btn.getAttribute('data-tag');
+
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      items.forEach((item) => {
+        if (tag === 'all') {
+          item.classList.remove('hidden');
+        } else {
+          const tags = JSON.parse(item.getAttribute('data-tags') || '[]');
+          if (tags.includes(tag)) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        }
+      });
+    });
+  });
+</script>

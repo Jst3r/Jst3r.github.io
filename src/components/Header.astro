@@ -1,0 +1,153 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/ctf', label: 'CTF' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-bracket">[</span>
+      <span class="logo-text">Jst3r</span>
+      <span class="logo-bracket">]</span>
+    </a>
+    <nav class="nav" id="nav">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={['nav-link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6" class="line-top" />
+        <line x1="3" y1="12" x2="21" y2="12" class="line-mid" />
+        <line x1="3" y1="18" x2="21" y2="18" class="line-bot" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: var(--font-mono);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .logo:hover {
+    color: var(--text-primary);
+  }
+
+  .logo-bracket {
+    color: var(--accent);
+  }
+
+  .logo-text {
+    color: var(--text-primary);
+  }
+
+  .nav {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition);
+    font-weight: 500;
+  }
+
+  .nav-link:hover {
+    color: var(--text-primary);
+    background: var(--bg-card);
+  }
+
+  .nav-link.active {
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .mobile-toggle:hover {
+    color: var(--text-primary);
+    background: var(--bg-card);
+  }
+
+  @media (max-width: 768px) {
+    .mobile-toggle {
+      display: flex;
+    }
+
+    .nav {
+      display: none;
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      padding: 0.5rem 1rem;
+    }
+
+    .nav.open {
+      display: flex;
+    }
+
+    .nav-link {
+      padding: 0.75rem 1rem;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('mobile-toggle');
+  const nav = document.getElementById('nav');
+  toggle?.addEventListener('click', () => {
+    nav?.classList.toggle('open');
+  });
+</script>
