@@ -54,28 +54,30 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   .post-header {
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: var(--border-width) solid var(--border);
   }
 
   .post-meta {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
     margin-bottom: 1rem;
+    text-transform: uppercase;
   }
 
   .meta-sep {
-    color: var(--border-hover);
+    color: var(--text-muted);
   }
 
   .post-title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1.15;
     margin-bottom: 0.75rem;
+    text-transform: uppercase;
   }
 
   .post-description {
@@ -94,7 +96,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   .post-footer {
     margin-top: 4rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--border);
+    border-top: var(--border-width) solid var(--border);
   }
 
   .back-link {
@@ -102,12 +104,21 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
     align-items: center;
     gap: 0.5rem;
     color: var(--text-secondary);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
     transition: color var(--transition);
+    padding: 0.5rem 1rem;
+    border: var(--border-width) solid var(--border);
+    box-shadow: var(--shadow-sm);
   }
 
   .back-link:hover {
     color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 3px 3px 0px var(--accent);
+    transform: translate(-1px, -1px);
   }
 
   @media (max-width: 768px) {

@@ -7,7 +7,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container about-page">
       <div class="about-header">
         <div class="about-avatar">
-          <div class="avatar-placeholder">J</div>
+          <img src="/profile.jpg" alt="Jst3r" class="avatar-img" />
         </div>
         <div class="about-intro">
           <h1 class="about-name">Jst3r</h1>
@@ -36,10 +36,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             I'm a cybersecurity enthusiast from Morocco with a passion for understanding how software works at its lowest level. 
             My primary focus is on <strong>Reverse Engineering</strong>, and I've recently been 
             expanding into <strong>Web Pentesting</strong> as well.
-          </p>
-          <p>
-            I enjoy participating in CTF competitions — I've ranked <strong>10th on Moroccan CTFtime</strong> playing solo in a single CTF, 
-            placed <strong>9th in IDEH CTF</strong>, and achieved <strong>9th place in Cyber Odyssey Finals</strong>.
           </p>
           <p>
             When I'm not reversing binaries or testing web apps, I write about my findings and share 
@@ -102,28 +98,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     gap: 2rem;
     margin-bottom: 3rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: var(--border-width) solid var(--border);
   }
 
-  .avatar-placeholder {
+  .avatar-img {
     width: 80px;
     height: 80px;
-    background: var(--accent-dim);
-    border: 2px solid var(--accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--accent);
-    font-family: var(--font-mono);
+    border: var(--border-width) solid var(--border);
+    box-shadow: var(--shadow);
+    object-fit: cover;
   }
 
   .about-name {
     font-size: 1.75rem;
-    font-weight: 700;
+    font-weight: 900;
     margin-bottom: 0.25rem;
+    text-transform: uppercase;
   }
 
   .about-role {
@@ -144,6 +134,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 0.8125rem;
     color: var(--text-muted);
     transition: color var(--transition);
+    font-weight: 600;
+    font-family: var(--font-mono);
   }
 
   .about-social:hover {
@@ -158,9 +150,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .about-section h2 {
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 800;
     margin-bottom: 1rem;
     color: var(--text-primary);
+    text-transform: uppercase;
   }
 
   .about-section p {
@@ -182,10 +175,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .skill-group h3 {
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 800;
     color: var(--accent);
     margin-bottom: 0.75rem;
     font-family: var(--font-mono);
+    text-transform: uppercase;
   }
 
   .skill-group ul {

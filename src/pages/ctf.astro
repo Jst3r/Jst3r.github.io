@@ -102,8 +102,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     text-align: center;
     padding: 2rem 1.5rem;
     background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border: var(--border-width) solid var(--border);
+    box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -111,7 +111,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .stat-number {
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: 900;
     color: var(--accent);
     font-family: var(--font-mono);
     line-height: 1;
@@ -119,9 +119,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .stat-label {
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-primary);
     margin-top: 0.5rem;
+    text-transform: uppercase;
   }
 
   .stat-detail {
@@ -137,9 +138,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .ctf-section h2 {
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 800;
     margin-bottom: 1.5rem;
     color: var(--text-primary);
+    text-transform: uppercase;
   }
 
   /* Timeline */
@@ -174,7 +176,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     width: 10px;
     height: 10px;
     background: var(--accent);
-    border-radius: 50%;
     transform: translateX(-4px);
   }
 
@@ -187,7 +188,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .timeline-header h3 {
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-primary);
   }
 
@@ -207,13 +208,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .category-card {
     padding: 1.5rem;
     background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border: var(--border-width) solid var(--border);
+    box-shadow: var(--shadow);
     transition: all var(--transition);
   }
 
   .category-card:hover {
-    border-color: var(--border-hover);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-accent);
+    transform: translate(-2px, -2px);
   }
 
   .category-icon {
@@ -223,9 +226,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .category-card h3 {
     font-size: 0.9375rem;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
+    text-transform: uppercase;
   }
 
   .category-card p {

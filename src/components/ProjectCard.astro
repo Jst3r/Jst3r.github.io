@@ -41,8 +41,8 @@ const { title, description, tags = [], link, github } = Astro.props;
   .project-card {
     padding: 1.5rem;
     background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border: var(--border-width) solid var(--border);
+    box-shadow: var(--shadow);
     transition: all var(--transition);
     display: flex;
     flex-direction: column;
@@ -50,8 +50,9 @@ const { title, description, tags = [], link, github } = Astro.props;
   }
 
   .project-card:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-accent);
+    transform: translate(-2px, -2px);
   }
 
   .project-icon {
@@ -73,28 +74,38 @@ const { title, description, tags = [], link, github } = Astro.props;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
     font-size: 0.8125rem;
-    font-weight: 500;
-    border-radius: var(--radius-sm);
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
+    font-weight: 700;
+    background: var(--accent);
+    border: var(--border-width) solid var(--border);
+    box-shadow: var(--shadow-sm);
+    color: #0a0a0a;
     transition: all var(--transition);
     text-decoration: none;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-size: 0.75rem;
   }
 
   .project-btn:hover {
-    background: var(--accent-dim);
-    border-color: var(--accent);
-    color: var(--accent);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px var(--accent);
+    color: #0a0a0a;
   }
 
   .project-btn--outline {
     background: transparent;
+    color: var(--text-secondary);
+  }
+
+  .project-btn--outline:hover {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-color: var(--accent);
   }
 
   .project-title {
     font-size: 1.0625rem;
-    font-weight: 600;
+    font-weight: 800;
     color: var(--text-primary);
   }
 

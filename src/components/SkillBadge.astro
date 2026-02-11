@@ -19,16 +19,18 @@ const { name, icon } = Astro.props;
     gap: 0.5rem;
     padding: 0.5rem 0.875rem;
     background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
+    border: var(--border-width) solid var(--border);
+    box-shadow: var(--shadow-sm);
     font-size: 0.8125rem;
     color: var(--text-secondary);
     transition: all var(--transition);
   }
 
   .skill-item:hover {
-    border-color: var(--border-hover);
-    color: var(--text-primary);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 2px 2px 0px var(--accent);
+    transform: translate(-1px, -1px);
   }
 
   .skill-icon {

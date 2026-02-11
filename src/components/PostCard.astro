@@ -39,35 +39,37 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
     display: block;
     padding: 1.5rem;
     background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border: var(--border-width) solid var(--border);
+    box-shadow: var(--shadow);
     transition: all var(--transition);
     text-decoration: none;
   }
 
   .post-card:hover {
     background: var(--bg-card-hover);
-    border-color: var(--border-hover);
-    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent);
+    border-color: var(--accent);
+    transform: translate(-2px, -2px);
   }
 
   .post-card-meta {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
     margin-bottom: 0.75rem;
+    text-transform: uppercase;
   }
 
   .meta-sep {
-    color: var(--border-hover);
+    color: var(--text-muted);
   }
 
   .post-card-title {
     font-size: 1.125rem;
-    font-weight: 600;
+    font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 0.5rem;
     line-height: 1.4;

@@ -104,24 +104,26 @@ const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))];
   .filter-btn {
     padding: 0.375rem 0.875rem;
     background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 9999px;
+    border: var(--border-width) solid var(--border);
     color: var(--text-secondary);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-family: var(--font-mono);
     cursor: pointer;
     transition: all var(--transition);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
   .filter-btn:hover {
-    border-color: var(--border-hover);
-    color: var(--text-primary);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   .filter-btn.active {
-    background: var(--accent-dim);
+    background: var(--accent);
     border-color: var(--accent);
-    color: var(--accent);
+    color: #0a0a0a;
   }
 
   .posts-list {
@@ -151,7 +153,7 @@ const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))];
     gap: 1rem;
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--border);
+    border-top: var(--border-width) solid var(--border);
   }
 
   .pagination-btn {
@@ -160,18 +162,21 @@ const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))];
     gap: 0.375rem;
     padding: 0.5rem 1rem;
     background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    border: var(--border-width) solid var(--border);
+    box-shadow: var(--shadow-sm);
     color: var(--text-secondary);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-family: var(--font-mono);
     text-decoration: none;
     transition: all var(--transition);
+    font-weight: 700;
+    text-transform: uppercase;
   }
 
   a.pagination-btn:hover {
     border-color: var(--accent);
     color: var(--accent);
+    box-shadow: 2px 2px 0px var(--accent);
   }
 
   .pagination-btn.disabled {
@@ -190,25 +195,25 @@ const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))];
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    border-radius: 0.375rem;
-    border: 1px solid var(--border);
+    border: var(--border-width) solid var(--border);
     background: var(--bg-card);
     color: var(--text-secondary);
     font-size: 0.8rem;
     font-family: var(--font-mono);
     text-decoration: none;
     transition: all var(--transition);
+    font-weight: 700;
   }
 
   .pagination-page:hover {
-    border-color: var(--border-hover);
-    color: var(--text-primary);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   .pagination-page.active {
-    background: var(--accent-dim);
+    background: var(--accent);
     border-color: var(--accent);
-    color: var(--accent);
+    color: #0a0a0a;
   }
 
   @media (max-width: 640px) {

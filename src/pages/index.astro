@@ -145,11 +145,12 @@ const posts = (await getCollection('blog'))
   }
 
   .hero-title {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1.1;
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.05;
     margin-bottom: 1.25rem;
     letter-spacing: -0.03em;
+    text-transform: uppercase;
   }
 
   .hero-accent {
@@ -165,7 +166,7 @@ const posts = (await getCollection('blog'))
 
   .hero-subtitle strong {
     color: var(--text-primary);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .hero-actions {
@@ -178,36 +179,43 @@ const posts = (await getCollection('blog'))
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.625rem 1.25rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    border-radius: var(--radius);
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
     transition: all var(--transition);
     text-decoration: none;
     cursor: pointer;
-    border: none;
+    border: var(--border-width) solid var(--border);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
   .btn-primary {
     background: var(--accent);
-    color: #fff;
+    color: #0a0a0a;
+    border-color: var(--border);
+    box-shadow: var(--shadow);
   }
 
   .btn-primary:hover {
-    background: var(--accent-hover);
-    color: #fff;
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-lg);
+    color: #0a0a0a;
   }
 
   .btn-ghost {
     background: transparent;
     color: var(--text-secondary);
-    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
   }
 
   .btn-ghost:hover {
-    color: var(--text-primary);
-    border-color: var(--border-hover);
-    background: var(--bg-card);
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-dim);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px var(--accent);
   }
 
   .hero-status {
@@ -220,10 +228,10 @@ const posts = (await getCollection('blog'))
   }
 
   .status-dot {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background: var(--green);
-    border-radius: 50%;
+    border: 1px solid var(--green);
     animation: pulse 2s ease-in-out infinite;
   }
 
@@ -232,7 +240,6 @@ const posts = (await getCollection('blog'))
     50% { opacity: 0.4; }
   }
 
-  /* Posts Grid */
   .posts-grid {
     display: grid;
     gap: 1rem;
@@ -249,13 +256,16 @@ const posts = (await getCollection('blog'))
     font-size: 0.875rem;
     color: var(--text-secondary);
     transition: color var(--transition);
+    font-weight: 700;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-size: 0.75rem;
   }
 
   .view-all-link:hover {
     color: var(--accent);
   }
 
-  /* Skills Home */
   .skills-grid-home {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -265,18 +275,21 @@ const posts = (await getCollection('blog'))
   .skill-category {
     padding: 1.5rem;
     background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border: var(--border-width) solid var(--border);
+    box-shadow: var(--shadow);
   }
 
   .skill-cat-title {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-size: 0.8125rem;
+    font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
   }
 
   .skill-cat-title svg {
@@ -292,17 +305,18 @@ const posts = (await getCollection('blog'))
   .skill-chip {
     padding: 0.25rem 0.625rem;
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 9999px;
+    border: var(--border-width) solid var(--border);
     font-size: 0.75rem;
     font-family: var(--font-mono);
     color: var(--text-secondary);
     transition: all var(--transition);
+    font-weight: 600;
   }
 
   .skill-chip:hover {
     border-color: var(--accent);
     color: var(--accent);
+    background: var(--accent-dim);
   }
 
   @media (max-width: 768px) {
