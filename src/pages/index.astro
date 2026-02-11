@@ -236,27 +236,29 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
   .filter-tag {
     display: inline-block;
     padding: 0.2rem 0.6rem;
-    background: var(--accent-dim);
-    color: var(--accent);
-    border: var(--border-width) solid var(--accent);
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: 500;
     font-family: var(--font-mono);
     text-transform: uppercase;
     letter-spacing: 0.04em;
     cursor: pointer;
     transition: all var(--transition);
-    opacity: 0.6;
+    opacity: 1;
   }
 
   .filter-tag:hover {
-    opacity: 1;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-color: var(--accent);
   }
 
   .filter-tag.active {
     background: var(--accent);
     color: #0a0a0a;
-    opacity: 1;
+    border-color: var(--accent);
   }
 
   .about-links {
