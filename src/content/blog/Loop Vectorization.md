@@ -1,3 +1,11 @@
+---
+title: "Loop Vectorization"
+description: "Understanding how compilers transform sequential loops into parallel SIMD operations"
+date: "2026-02-12"
+tags: ["Vectorization", "Optimization", "Compiler"]
+readTime: "6 min read"
+---
+
 
 **Loop Vectorization** is a technique used by compilers (or programmers manually) to speed up code by performing an operation on **multiple data points simultaneously** rather than one by one.
 
