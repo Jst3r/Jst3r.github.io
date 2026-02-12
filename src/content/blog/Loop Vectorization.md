@@ -1,7 +1,7 @@
 ---
 title: "Loop Vectorization"
 description: "How modern compilers turn your innocent for-loops into parallel processing powerhouses"
-date: "2026-02-12"
+date: "2026-01-18"
 tags: ["Vectorization", "Optimization", "Compiler", "SIMD", "Performance"]
 readTime: "6 min read"
 ---
