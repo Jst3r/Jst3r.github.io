@@ -176,8 +176,6 @@ When analyzing binaries, watch for these patterns:
 
 Loop vectorization is just one tool in the compiler's optimization arsenal, but it's a powerful one. It bridges the gap between high-level code that's easy to write and maintain, and low-level code that fully exploits modern CPU capabilities.
 
-Understanding vectorization makes you a better programmer—you'll write code that's easier for compilers to optimize. It makes you a better performance engineer—you'll know where to look when code runs slower than expected. And it makes you a better reverse engineer—you'll recognize these patterns and understand the "why" behind the assembly you're analyzing.
-
 The next time you write a simple `for` loop, remember: somewhere deep in your CPU, there's a massive register just waiting to process eight elements at once. Your compiler's job is to use it. Your job is to let it.
 
 ---

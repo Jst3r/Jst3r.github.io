@@ -132,7 +132,14 @@ const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))];
   }
 
   .post-item {
-    transition: opacity 200ms ease, transform 200ms ease;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .post-item.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .post-item.hidden {
@@ -228,6 +235,25 @@ const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))];
   const buttons = document.querySelectorAll('.filter-btn');
   const items = document.querySelectorAll('.post-item');
 
+  // Lazy-load: reveal posts as they scroll into view
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '50px' }
+  );
+
+  items.forEach((item, i) => {
+    (item as HTMLElement).style.transitionDelay = `${i * 60}ms`;
+    observer.observe(item);
+  });
+
+  // Tag filtering
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const tag = btn.getAttribute('data-tag');
