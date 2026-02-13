@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 — Access Denied" description="Page not found">
+  <section class="error-section">
+    <div class="container error-container">
+      <div class="error-code">
+        <span class="error-4">4</span>
+        <span class="error-0">0</span>
+        <span class="error-4">4</span>
+      </div>
+
+      <div class="terminal-block">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">bash — 80×24</span>
+        </div>
+        <div class="terminal-content">
+          <p><span class="ps1">root@jst3r:~#</span> curl -I <span class="url">https://jst3r.github.io<span id="current-path">/???</span></span></p>
+          <p class="response">HTTP/1.1 <span class="status-code">404 Not Found</span></p>
+          <p class="response">Server: JstOS/1.337</p>
+          <p class="response">X-Hacker: <span class="hint-text">Look deeper. The flag is closer than you think.</span></p>
+          <p class="response">X-Challenge: <span class="b64-flag" data-flag="ZmxhZ3tuMHRfZjB1bmRfYnV0X3kwdV90cjEzZH0=">[REDACTED]</span></p>
+          <p>&nbsp;</p>
+          <p><span class="ps1">root@jst3r:~#</span> <span class="cursor">█</span></p>
+        </div>
+      </div>
+
+      <!-- Hidden hint in source -->
+      <!-- 🚩 CTF Hint: The flag is base64-encoded in the data-flag attribute above. -->
+      <!-- Decode it: echo "ZmxhZ3tuMHRfZjB1bmRfYnV0X3kwdV90cjEzZH0=" | base64 -d -->
+
+      <p class="error-message">The page you're looking for doesn't exist. Or maybe it's just well hidden.</p>
+      <a href="/" class="back-link">
+        <span class="arrow">←</span> Return to safety
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .error-section {
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .error-container {
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .error-code {
+    font-family: var(--font-mono);
+    font-size: 8rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 2rem;
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+
+  .error-4 {
+    color: var(--accent);
+    text-shadow: 4px 4px 0px rgba(250, 204, 21, 0.2);
+  }
+
+  .error-0 {
+    color: var(--text-muted);
+    animation: pulse-0 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-0 {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .terminal-block {
+    text-align: left;
+    background: #0c0c0c;
+    border: 2px solid var(--border);
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+  }
+
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.5rem 0.75rem;
+    background: #1a1a1a;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .terminal-dot.red { background: #ef4444; }
+  .terminal-dot.yellow { background: #facc15; }
+  .terminal-dot.green { background: #22c55e; }
+
+  .terminal-title {
+    flex: 1;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .terminal-content {
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+  }
+
+  .terminal-content p { margin: 0; }
+
+  .ps1 {
+    color: #22c55e;
+    font-weight: 700;
+  }
+
+  .url { color: var(--accent); }
+
+  .status-code {
+    color: #ef4444;
+    font-weight: 700;
+  }
+
+  .hint-text {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .b64-flag {
+    color: var(--text-muted);
+  }
+
+  .response {
+    color: var(--text-muted);
+  }
+
+  .cursor {
+    color: #22c55e;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .error-message {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.5rem 1.25rem;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    transition: all var(--transition);
+    letter-spacing: 0.04em;
+  }
+
+  .back-link:hover {
+    background: var(--accent);
+    color: #0a0a0a;
+    box-shadow: 4px 4px 0px var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .error-code { font-size: 5rem; }
+    .terminal-content { font-size: 0.7rem; }
+  }
+</style>
+
+<script>
+  // Show the actual path that was not found
+  const pathEl = document.getElementById('current-path');
+  if (pathEl) {
+    pathEl.textContent = window.location.pathname;
+  }
+</script>
