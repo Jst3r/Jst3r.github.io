@@ -1,7 +1,6 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import EasterEggs from '../components/EasterEggs.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -29,6 +28,95 @@ const { title, description = 'Jst3r — Cybersecurity Researcher & Reverse Engin
     <main>
       <slot />
     </main>
-    <EasterEggs />
+
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrix-canvas" class="ee-matrix-canvas"></canvas>
+
+    <style>
+      /* ===== Matrix Canvas ===== */
+      .ee-matrix-canvas {
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .ee-matrix-canvas.active {
+        opacity: 0.6;
+      }
+    </style>
+
+    <script>
+      // ===== 4. Matrix Rain =====
+      (() => {
+        const canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement;
+        const ctx = canvas.getContext('2d')!;
+        let animationId: number | null = null;
+        let active = false;
+        let clickCount = 0;
+        let clickTimer: ReturnType<typeof setTimeout> | null = null;
+
+        const avatar = document.querySelector('.avatar-img');
+        if (avatar) {
+          avatar.addEventListener('click', (e) => {
+            e.preventDefault();
+            clickCount++;
+            if (clickTimer) clearTimeout(clickTimer);
+            clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
+
+            if (clickCount >= 5) {
+              clickCount = 0;
+              active = !active;
+              canvas.classList.toggle('active', active);
+              if (active) startMatrix();
+              else stopMatrix();
+            }
+          });
+        }
+
+        const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF{}flag';
+        const fontSize = 14;
+        let columns: number[] = [];
+
+        function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          const colCount = Math.floor(canvas.width / fontSize);
+          columns = Array(colCount).fill(0).map(() => Math.random() * canvas.height / fontSize | 0);
+        }
+
+        function draw() {
+          ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#22c55e';
+          ctx.font = `${fontSize}px monospace`;
+
+          for (let i = 0; i < columns.length; i++) {
+            const char = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillText(char, i * fontSize, columns[i] * fontSize);
+            if (columns[i] * fontSize > canvas.height && Math.random() > 0.975) {
+              columns[i] = 0;
+            }
+            columns[i]++;
+          }
+          animationId = requestAnimationFrame(draw);
+        }
+
+        function startMatrix() {
+          resize();
+          draw();
+        }
+
+        function stopMatrix() {
+          if (animationId) cancelAnimationFrame(animationId);
+          animationId = null;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        window.addEventListener('resize', () => { if (active) resize(); });
+      })();
+    </script>
   </body>
 </html>

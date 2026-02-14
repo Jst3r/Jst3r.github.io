@@ -628,42 +628,8 @@ If you see `vzeroupper`, you know AVX was used somewhere in that function.
 
 Alignment checking before loops suggests the compiler is trying to use aligned loads for better performance.
 
-## The Bigger Picture
 
-Loop vectorization is just one tool in the compiler's optimization arsenal, but it's a powerful one. It bridges the gap between high-level code that's easy to write and maintain, and low-level code that fully exploits modern CPU capabilities.
-
-### Key Takeaways
-
-1. **Modern CPUs have massive parallel processing capabilities** built right into their ALUs through SIMD registers
-
-2. **Compilers automatically vectorize** simple loops when they can prove it's safe to do so
-
-3. **You can help the compiler** by:
-   - Using contiguous memory access patterns
-   - Avoiding dependencies between iterations
-   - Using the `restrict` keyword
-   - Aligning data structures
-   - Keeping loops simple
-
-4. **Memory access patterns matter** more than you might think even perfect vectorization is limited by memory bandwidth
-
-5. **Reverse engineering benefits**: Recognizing vectorized code helps you understand what the compiler optimized and why performance is what it is
-
-### When to Care About Vectorization
-
-**You should pay attention when:**
-- Processing large amounts of data (images, audio, scientific computing)
-- Performance profiling shows loops as hotspots
-- Working with floating-point heavy calculations
-- Implementing algorithms like matrix operations, FFT, compression
-
-**You can probably ignore it when:**
-- The code isn't performance-critical
-- Arrays are small (< 1000 elements)
-- Loop bodies are complex with lots of branching
-- Memory access is random/unpredictable
-
-### Looking Forward
+### summary
 
 As CPUs continue to evolve, SIMD capabilities are only getting wider:
 - AVX-512 is becoming more common
