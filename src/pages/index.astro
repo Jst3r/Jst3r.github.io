@@ -1,275 +1,423 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PostCard from '../components/PostCard.astro';
-import { getCollection } from 'astro:content';
-
-const posts = (await getCollection('blog'))
-  .filter((post) => !post.data.hidden)
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
-<BaseLayout title="Home" description="Jst3r — Security Researcher, Reverse Engineer & CTF Player based in Morocco.">
-  <section class="home-section">
-    <div class="page-layout">
-      <!-- Left Sidebar -->
-      <aside class="sidebar">
-        <div class="profile-card">
-          <div class="profile-top">
-            <img src="/profile.jpg" alt="Jst3r Profile" class="avatar-img" />
-            <div class="profile-info">
-              <h1 class="about-name">Jst3r</h1>
-              <p class="about-role">Security Research • Rev • CTF</p>
+<BaseLayout title="Home" description="Jst3r — Security Researcher, Reverse Engineer & CTF Player.">
+  <section class="pinboard-section">
+    <div class="pinboard-container">
+      
+      <!-- HERO COLLAGE: Interactive 3D Polaroid Profile + Title + Floating Platform Dock -->
+      <div class="hero-collage">
+        
+        <!-- Polaroid Photo Frame with 3D Tilt & Paperclip Accent -->
+        <div class="polaroid-wrapper" id="tilt-polaroid">
+          <div class="tape tape-top-left"></div>
+          <div class="tape tape-top-right"></div>
+          <div class="polaroid-card">
+            <!-- Paperclip SVG Accent -->
+            <svg class="paperclip-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57a4 4 0 1 1 5.66 5.66l-8.59 8.58a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+            </svg>
+            
+            <!-- Hand-drawn Smiley Sticker Accent -->
+            <div class="smiley-sticker" title="Stay Curious">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10" fill="#fef08a" stroke="#eab308"/>
+                <circle cx="9" cy="9" r="1" fill="#0f172a"/>
+                <circle cx="15" cy="9" r="1" fill="#0f172a"/>
+                <path d="M8 14 C 10 17, 14 17, 16 14"/>
+              </svg>
             </div>
-          </div>
 
-          <div class="about-bio">
-            <p>
-              Cybersecurity researcher & CTF player from <strong>Morocco</strong> specializing in 
-              <strong>Security Research</strong>, <strong>Reverse Engineering</strong>, and <strong>Binary Exploitation</strong>.
-            </p>
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- CTF Achievements -->
-          <div class="about-section">
-            <h2>Gallery of Failures</h2>
-            <ul class="achievements-list">
-              <li><span class="bullet">▹</span> 8th place — Cyber Odyssey Finals CTF 2025</li>
-              <li><span class="bullet">▹</span> 9th place — International Days of Hacking 2026</li>
-            </ul>
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- Social & Platform Profiles -->
-          <div class="about-section">
-            <h2>Profiles & Links</h2>
-            <div class="about-links">
-              <a href="https://github.com/Jst3r" target="_blank" rel="noopener noreferrer" class="about-social">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                GitHub
-              </a>
-              <a href="https://x.com/whoisJst3r" target="_blank" rel="noopener noreferrer" class="about-social">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                Twitter
-              </a>
-              <a href="https://app.hackthebox.com/users/2051959" target="_blank" rel="noopener noreferrer" class="about-social">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.996 0L1.779 5.899v12.202l10.217 5.899 10.225-5.899V5.899L11.996 0zm7.884 16.658l-7.884 4.551-7.876-4.551V7.342l7.876-4.55 7.884 4.55v9.316z"/></svg>
-                Hack The Box
-              </a>
-              <a href="https://tryhackme.com/p/Jst3r" target="_blank" rel="noopener noreferrer" class="about-social">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L2 6v12l10 5 10-5V6L12 1zm0 2.236l7.5 3.75v9.028L12 19.764 4.5 16.014V6.986L12 3.236z"/></svg>
-                TryHackMe
-              </a>
-              <a href="https://pwn.college/hacker/Jst3r" target="_blank" rel="noopener noreferrer" class="about-social">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                pwn.college
-              </a>
-              <a href="/resume.pdf" download class="about-social">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Resume
-              </a>
+            <img src="/profile.jpg" alt="Jst3r" class="polaroid-img" />
+            <div class="polaroid-caption">
+              <span class="p-name">JST3R</span>
             </div>
           </div>
         </div>
-      </aside>
 
-      <!-- Main Posts Area -->
-      <div class="main-content">
-        <div class="posts-header">
-          <span class="terminal-prompt">~/blog $</span>
-          <span class="terminal-cmd">ls -la posts/</span>
-        </div>
+        <!-- Main Hero Statement & Bio Card -->
+        <div class="hero-statement-card">
+          <h1 class="hero-title">
+            SECURITY RESEARCHER, <br />
+            <span class="marker-highlight">REVERSE ENGINEER</span> &amp; CTF PLAYER.
+          </h1>
 
-        <div class="posts-list">
-          {posts.map((post) => (
-            <div class="post-item">
-              <PostCard
-                title={post.data.title}
-                description={post.data.description}
-                date={post.data.date}
-                tags={post.data.tags}
-                slug={post.slug}
-                readTime={post.data.readTime}
-              />
+          <p class="hero-bio">
+            Student and cybersecurity enthusiast passionate about CTFs, low-level systems, and software security.
+          </p>
+
+          <!-- Floating Platform Dock -->
+          <div class="dock-wrapper">
+            <!-- Hand-drawn Doodle Arrow -->
+            <svg class="bio-arrow-doodle" width="44" height="44" viewBox="0 0 50 50" fill="none" stroke="#eab308" stroke-width="2.5" stroke-linecap="round">
+              <path d="M12 8 Q 22 34 38 38 M 28 32 L 38 38 L 38 26"></path>
+            </svg>
+
+            <div class="platform-dock">
+              <a href="https://github.com/Jst3r" target="_blank" rel="noopener noreferrer" class="dock-item" title="GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <span>GitHub</span>
+              </a>
+              <a href="https://x.com/whoisJst3r" target="_blank" rel="noopener noreferrer" class="dock-item" title="Twitter">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <span>Twitter</span>
+              </a>
             </div>
-          ))}
+          </div>
+
         </div>
 
-        {posts.length === 0 && (
-          <div class="empty-state">
-            <p>No posts yet. Check back soon!</p>
-          </div>
-        )}
       </div>
+
+      <!-- MAIN CONTENT GRID -->
+      <div class="pinboard-grid">
+        <div class="taped-sheet ctf-sheet">
+          <div class="sheet-header">
+            <h2 class="sheet-title">Gallery of Failures</h2>
+          </div>
+          <ul class="achievements-list">
+            <li>
+              <span class="star-bullet">★</span>
+              <div class="ach-text">
+                <span class="circled-badge">
+                  <svg width="85" height="32" viewBox="0 0 100 40" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round">
+                    <path d="M5 20 C 10 5, 90 5, 95 20 C 98 35, 15 38, 8 22"></path>
+                  </svg>
+                  <strong>8th place</strong>
+                </span>
+                — Cyber Odyssey Finals CTF 2025
+              </div>
+            </li>
+            <li>
+              <span class="star-bullet">★</span>
+              <div class="ach-text">
+                <strong>9th place</strong> — International Days of Hacking 2026
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
     </div>
   </section>
 </BaseLayout>
 
+<script>
+  // 3D Tilt Effect ONLY when cursor hovers directly over Polaroid Photo
+  const polaroid = document.getElementById('tilt-polaroid');
+  if (polaroid) {
+    polaroid.addEventListener('mousemove', (e) => {
+      const rect = polaroid.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      const rotateX = (-y / 20).toFixed(2);
+      const rotateY = (x / 20).toFixed(2);
+      
+      polaroid.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotate(-2deg)`;
+    });
+
+    polaroid.addEventListener('mouseleave', () => {
+      polaroid.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) rotate(-3deg)';
+    });
+  }
+</script>
+
 <style>
-  .home-section {
+  .pinboard-section {
+    padding: 2.5rem 1.5rem 5rem;
     min-height: calc(100vh - var(--header-height));
-    padding: 2.5rem 1.5rem;
   }
 
-  .page-layout {
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 2.5rem;
-    max-width: 1200px;
+  .pinboard-container {
+    max-width: 1150px;
     margin: 0 auto;
-    align-items: start;
   }
 
-  .sidebar {
-    position: sticky;
-    top: calc(var(--header-height) + 1.5rem);
+  /* ===== HERO COLLAGE ===== */
+  .hero-collage {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 3.5rem;
   }
 
-  .profile-card {
-    padding: 1.5rem;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    border-radius: 4px;
+  /* Polaroid Frame */
+  .polaroid-wrapper {
+    position: relative;
+    transform: rotate(-3deg);
+    transition: transform 0.15s ease-out;
+    transform-style: preserve-3d;
   }
 
-  .profile-top {
+  .paperclip-icon {
+    position: absolute;
+    top: -16px;
+    right: 16px;
+    z-index: 12;
+    transform: rotate(22deg);
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));
+  }
+
+  .smiley-sticker {
+    position: absolute;
+    bottom: -10px;
+    left: -12px;
+    z-index: 14;
+    transform: rotate(-15deg);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+  }
+
+  .smiley-sticker:hover {
+    transform: rotate(0deg) scale(1.2);
+  }
+
+  .polaroid-card {
+    background: #ffffff;
+    padding: 12px 12px 24px 12px;
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04);
+    border: 1px solid #e2e8f0;
+    position: relative;
+  }
+
+  .polaroid-img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border: 1px solid #f1f5f9;
+  }
+
+  .polaroid-caption {
+    margin-top: 10px;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
+    padding: 0 4px;
+    font-family: var(--font-mono);
+  }
+
+  .p-name {
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: #0f172a;
+  }
+
+  /* Black Ink Doodles & Artwork */
+  .skull-doodle {
+    position: absolute;
+    bottom: -18px;
+    left: -18px;
+    z-index: 12;
+    transform: rotate(-10deg);
+    pointer-events: none;
+    filter: drop-shadow(1px 1px 0px rgba(255, 255, 255, 0.8));
+  }
+
+  .graffiti-drip-mark {
+    position: absolute;
+    top: -14px;
+    right: -10px;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.85;
+  }
+
+  .sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sheet-art-doodles {
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  /* Hero Statement Card */
+  .hero-statement-card {
+    position: relative;
+    background: transparent;
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: #0f172a;
+  }
+
+  .hero-bio {
+    font-size: 1.05rem;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+
+  /* Dock Wrapper & Doodle Arrow */
+  .dock-wrapper {
+    position: relative;
+    margin-top: 1.5rem;
+  }
+
+  .bio-arrow-doodle {
+    position: absolute;
+    top: -36px;
+    left: 20px;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .platform-dock {
+    margin: 0;
+  }
+
+  .dock-item {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #0f172a;
+    text-decoration: none;
+    border-radius: 9999px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dock-item:hover {
+    background: #fef9c3;
+    color: #ca8a04;
+    transform: translateY(-2px);
+  }
+
+  .dock-highlight {
+    background: #fef08a;
+    color: #854d0e;
+  }
+
+  .dock-highlight:hover {
+    background: #fde047;
+  }
+
+  /* ===== MAIN PINBOARD GRID ===== */
+  .pinboard-grid {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Borderless Clean Sheets */
+  .taped-sheet {
+    position: relative;
+    background: transparent;
+  }
+
+  .sheet-header {
+    border-bottom: 2px solid #0f172a;
+    padding-bottom: 0.5rem;
     margin-bottom: 1.25rem;
   }
 
-  .avatar-img {
-    width: 54px;
-    height: 54px;
-    border: 2px solid var(--accent);
-    object-fit: cover;
-    flex-shrink: 0;
-  }
-
-  .about-name {
-    font-size: 1.25rem;
-    font-weight: 800;
-    margin-bottom: 0.15rem;
-    text-transform: uppercase;
-    line-height: 1.1;
-  }
-
-  .about-role {
-    color: var(--accent);
-    font-size: 0.6875rem;
+  .sheet-title {
     font-family: var(--font-mono);
-    font-weight: 700;
+    font-size: 0.95rem;
+    font-weight: 900;
     text-transform: uppercase;
+    color: #0f172a;
+    letter-spacing: 0.04em;
   }
 
-  .about-bio p {
-    color: var(--text-secondary);
-    font-size: 0.8125rem;
-    line-height: 1.6;
-  }
-
-  .about-bio p strong {
-    color: var(--text-primary);
-  }
-
-  .divider {
-    height: 1px;
-    background: var(--border);
-    margin: 1.25rem 0;
-  }
-
-  .about-section h2 {
-    font-size: 0.6875rem;
-    font-weight: 800;
-    margin-bottom: 0.625rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    font-family: var(--font-mono);
-    letter-spacing: 0.08em;
-  }
-
+  /* CTF Sheet Details */
   .achievements-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1.25rem;
     list-style: none;
-    padding: 0;
   }
 
   .achievements-list li {
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
     display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    line-height: 1.5;
-  }
-
-  .bullet {
-    color: var(--accent);
-    font-size: 0.75rem;
-    margin-top: 0.125rem;
-    flex-shrink: 0;
-  }
-
-  .about-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-  }
-
-  .about-social {
-    display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-    font-weight: 600;
-    font-family: var(--font-mono);
-    text-decoration: none;
-    padding: 0.25rem 0;
-    transition: color 0.2s;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: #475569;
   }
 
-  .about-social:hover {
-    color: var(--accent);
+  .star-bullet {
+    color: #eab308;
+    font-size: 1rem;
+    line-height: 1;
   }
 
-  .main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  .circled-badge {
+    position: relative;
+    display: inline-block;
+    padding: 0.1rem 0.3rem;
+    transition: transform 0.2s ease;
   }
 
-  .posts-header {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
+  .circled-badge:hover {
+    transform: scale(1.08) rotate(-2deg);
   }
 
-  .terminal-prompt {
-    color: var(--accent);
-    font-weight: 700;
+  .circled-badge svg {
+    position: absolute;
+    top: -4px;
+    left: -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 8px);
+    pointer-events: none;
   }
 
-  .terminal-cmd {
-    color: var(--text-secondary);
-    margin-left: 0.35rem;
+  .ach-text strong {
+    color: #0f172a;
   }
 
+  /* Posts Sheet */
   .posts-list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
-  @media (max-width: 868px) {
-    .page-layout {
+  @media (max-width: 900px) {
+    .hero-collage {
       grid-template-columns: 1fr;
+    }
+
+    .polaroid-wrapper {
+      max-width: 260px;
+      margin: 0 auto;
+    }
+
+    .pinboard-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .platform-dock {
+      flex-wrap: wrap;
+      border-radius: 12px;
+    }
+
+    .bio-arrow-doodle {
+      display: none;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
     }
   }
 </style>

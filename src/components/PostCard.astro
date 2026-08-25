@@ -38,18 +38,18 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
   .post-card {
     display: block;
     padding: 1.5rem;
-    background: var(--bg-card);
-    border: var(--border-width) solid var(--border);
-    box-shadow: var(--shadow);
-    transition: all var(--transition);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
     text-decoration: none;
   }
 
   .post-card:hover {
-    background: var(--bg-card-hover);
-    box-shadow: var(--shadow-accent);
-    border-color: var(--accent);
-    transform: translate(-2px, -2px);
+    background: #fef9c3;
+    border-color: #fde047;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
   }
 
   .post-card-meta {
