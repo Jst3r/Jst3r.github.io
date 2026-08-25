@@ -9,22 +9,16 @@ const navLinks = [
 
 <header class="header">
   <div class="container header-inner">
-    <div class="header-left">
-      <a href="/" class="logo">
-        <img src="/profile.jpg" alt="Jst3r" class="logo-avatar" />
-        <span class="logo-text">Jst3r</span>
+    <nav class="nav" id="nav">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class:list={['nav-link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
+      >
+        {link.label}
       </a>
-      <nav class="nav" id="nav">
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          class:list={['nav-link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
-        >
-          {link.label}
-        </a>
-      ))}
-      </nav>
-    </div>
+    ))}
+    </nav>
     <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="3" y1="6" x2="21" y2="6" class="line-top" />
