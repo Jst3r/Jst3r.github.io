@@ -1,23 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
+import HTBCard from '../components/HTBCard.astro';
+import THMCard from '../components/THMCard.astro';
+import PwnCollegeCard from '../components/PwnCollegeCard.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog'))
   .filter((post) => !post.data.hidden)
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
-
-const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
 ---
 
-<BaseLayout title="Home" description="Jst3r — Cybersecurity Researcher and CTF Player">
+<BaseLayout title="Home" description="Jst3r — Cybersecurity Researcher & CTF Player from Morocco focused on Reverse Engineering and Web Pentesting.">
   <section class="home-section">
     <div class="page-layout">
-      <!-- Left: About Me -->
+      <!-- Left Sidebar -->
       <aside class="sidebar">
         <div class="profile-card">
           <div class="profile-top">
-            <img src="/profile.jpg" alt="Jst3r" class="avatar-img" />
+            <img src="/profile.jpg" alt="Jst3r Profile" class="avatar-img" />
             <div class="profile-info">
               <h1 class="about-name">Jst3r</h1>
               <p class="about-role">Security Researcher & CTF Player</p>
@@ -26,18 +27,16 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
 
           <div class="about-bio">
             <p>
-              Cybersecurity enthusiast from Morocco focused on <strong>Reverse Engineering</strong>
-              and <strong>Web Pentesting</strong>.
+              Cybersecurity enthusiast from <strong>Morocco</strong> specializing in 
+              <strong>Reverse Engineering</strong> and <strong>Web Pentesting</strong>.
             </p>
           </div>
 
           <div class="divider"></div>
 
+          <!-- CTF Achievements -->
           <div class="about-section">
-            <h2>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              Gallery of failures
-            </h2>
+            <h2>Gallery of Failures</h2>
             <ul class="achievements-list">
               <li><span class="bullet">▹</span> 8th place — Cyber Odyssey Finals CTF 2025</li>
               <li><span class="bullet">▹</span> 9th place — International Days of Hacking 2026</li>
@@ -46,47 +45,44 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
 
           <div class="divider"></div>
 
+          <!-- Live Badges -->
           <div class="about-section">
-            <h2>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-              Tags
-            </h2>
-            <div class="tags-list">
-              <button class="filter-tag active" data-tag="all">All</button>
-              {allTags.map((tag) => (
-                <button class="filter-tag" data-tag={tag}>{tag}</button>
-              ))}
-            </div>
+            <h2>Profiles</h2>
+            <HTBCard htbId="2051959" username="Jst3r" />
+            <THMCard username="Jst3r" />
+            <PwnCollegeCard username="Jst3r" />
           </div>
 
           <div class="divider"></div>
 
+          <!-- Social Links -->
           <div class="about-links">
             <a href="https://github.com/Jst3r" target="_blank" rel="noopener noreferrer" class="about-social">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              Jst3r
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              GitHub
             </a>
             <a href="https://x.com/whoisJst3r" target="_blank" rel="noopener noreferrer" class="about-social">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              @whoisJst3r
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Twitter
             </a>
             <a href="/resume.pdf" download class="about-social">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Resume
             </a>
           </div>
         </div>
       </aside>
 
-      <!-- Right: Blog Posts -->
+      <!-- Main Posts Area -->
       <div class="main-content">
         <div class="posts-header">
           <span class="terminal-prompt">~/blog $</span>
           <span class="terminal-cmd">ls -la posts/</span>
         </div>
-        <div class="posts-list" id="posts-list">
+
+        <div class="posts-list">
           {posts.map((post) => (
-            <div class="post-item" data-tags={JSON.stringify(post.data.tags || [])}>
+            <div class="post-item">
               <PostCard
                 title={post.data.title}
                 description={post.data.description}
@@ -101,9 +97,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
 
         {posts.length === 0 && (
           <div class="empty-state">
-            <span class="terminal-prompt">~/blog $</span>
-            <span class="terminal-cmd">ls posts/</span>
-            <p class="empty-msg">No posts yet. Check back soon!</p>
+            <p>No posts yet. Check back soon!</p>
           </div>
         )}
       </div>
@@ -113,27 +107,29 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
 
 <style>
   .home-section {
-    min-height: 100vh;
-    padding: 2.5rem;
+    min-height: calc(100vh - var(--header-height));
+    padding: 2.5rem 1.5rem;
   }
 
   .page-layout {
     display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 3rem;
+    grid-template-columns: 320px 1fr;
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
     align-items: start;
   }
 
-  /* Sidebar — sticky */
   .sidebar {
     position: sticky;
-    top: 2rem;
+    top: calc(var(--header-height) + 1.5rem);
   }
 
   .profile-card {
     padding: 1.5rem;
-    border-right: var(--border-width) solid var(--border);
-    padding-right: 2rem;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    border-radius: 4px;
   }
 
   .profile-top {
@@ -144,19 +140,18 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
   }
 
   .avatar-img {
-    width: 56px;
-    height: 56px;
-    border: var(--border-width) solid var(--accent);
+    width: 54px;
+    height: 54px;
+    border: 2px solid var(--accent);
     object-fit: cover;
     flex-shrink: 0;
   }
 
   .about-name {
     font-size: 1.25rem;
-    font-weight: 900;
-    margin-bottom: 0.125rem;
+    font-weight: 800;
+    margin-bottom: 0.15rem;
     text-transform: uppercase;
-    letter-spacing: -0.02em;
     line-height: 1.1;
   }
 
@@ -164,20 +159,18 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
     color: var(--accent);
     font-size: 0.6875rem;
     font-family: var(--font-mono);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
   }
 
   .about-bio p {
     color: var(--text-secondary);
     font-size: 0.8125rem;
-    line-height: 1.7;
+    line-height: 1.6;
   }
 
   .about-bio p strong {
     color: var(--text-primary);
-    font-weight: 600;
   }
 
   .divider {
@@ -194,13 +187,6 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
     text-transform: uppercase;
     font-family: var(--font-mono);
     letter-spacing: 0.08em;
-    display: flex;
-    align-items: center;
-    gap: 0.375rem;
-  }
-
-  .about-section h2 svg {
-    color: var(--accent);
   }
 
   .achievements-list {
@@ -227,44 +213,10 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
     flex-shrink: 0;
   }
 
-  .tags-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.375rem;
-  }
-
-  .filter-tag {
-    display: inline-block;
-    padding: 0.2rem 0.6rem;
-    background: transparent;
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-    font-size: 0.7rem;
-    font-weight: 500;
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    transition: all var(--transition);
-    opacity: 1;
-  }
-
-  .filter-tag:hover {
-    background: var(--accent-dim);
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-
-  .filter-tag.active {
-    background: var(--accent);
-    color: #0a0a0a;
-    border-color: var(--accent);
-  }
-
   .about-links {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.4rem;
   }
 
   .about-social {
@@ -273,26 +225,27 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
     gap: 0.5rem;
     font-size: 0.8125rem;
     color: var(--text-muted);
-    transition: color var(--transition);
     font-weight: 600;
     font-family: var(--font-mono);
-    padding: 0.25rem 0;
+    text-decoration: none;
+    transition: color 0.2s;
   }
 
   .about-social:hover {
     color: var(--accent);
   }
 
-  /* Main content */
   .main-content {
-    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   .posts-header {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-muted);
+    font-size: 0.8125rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
   }
 
   .terminal-prompt {
@@ -302,116 +255,18 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
 
   .terminal-cmd {
     color: var(--text-secondary);
-    margin-left: 0.25rem;
+    margin-left: 0.35rem;
   }
 
   .posts-list {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
-  .post-item {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-
-  .post-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .posts-list :global(.post-card) {
-    box-shadow: none;
-    padding: 1.25rem 1.5rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-  }
-
-  .posts-list :global(.post-card:hover) {
-    border-color: var(--accent);
-    transform: none;
-    box-shadow: none;
-  }
-
-  .posts-list :global(.post-card:hover .post-card-title) {
-    color: var(--accent);
-  }
-
-  .empty-state {
-    padding: 2rem 0;
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-  }
-
-  .empty-msg {
-    margin-top: 0.75rem;
-    color: var(--text-muted);
-  }
-
-  @media (max-width: 768px) {
-    .home-section {
-      padding: 1.5rem;
-    }
-
+  @media (max-width: 868px) {
     .page-layout {
       grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .sidebar {
-      position: static;
-    }
-
-    .profile-card {
-      border-right: none;
-      padding-right: 0;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2rem;
     }
   }
 </style>
-
-<script>
-  const filterTags = document.querySelectorAll('.filter-tag');
-  const postItems = document.querySelectorAll('.post-item');
-
-  // Lazy-load: reveal posts as they scroll into view
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          (entry.target as HTMLElement).classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: '50px' }
-  );
-
-  postItems.forEach((item, i) => {
-    (item as HTMLElement).style.transitionDelay = `${i * 60}ms`;
-    observer.observe(item);
-  });
-
-  // Tag filtering
-  filterTags.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      filterTags.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const selectedTag = btn.getAttribute('data-tag');
-
-      postItems.forEach((item) => {
-        if (selectedTag === 'all') {
-          (item as HTMLElement).style.display = '';
-        } else {
-          const tags = JSON.parse(item.getAttribute('data-tags') || '[]');
-          (item as HTMLElement).style.display = tags.includes(selectedTag) ? '' : 'none';
-        }
-      });
-    });
-  });
-</script>

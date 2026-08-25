@@ -1,0 +1,115 @@
+---
+interface Props {
+  username?: string;
+  profileUrl?: string;
+}
+
+const {
+  username = 'Jst3r',
+  profileUrl = `https://pwn.college/hacker/${username}`
+} = Astro.props;
+---
+
+<div class="pwn-card">
+  <div class="pwn-header">
+    <div class="pwn-logo-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="16 18 22 12 16 6"></polyline>
+        <polyline points="8 6 2 12 8 18"></polyline>
+      </svg>
+      <span class="pwn-title">pwn.college</span>
+    </div>
+    <span class="pwn-badge-tag">PWN</span>
+  </div>
+
+  <div class="pwn-info">
+    <span class="pwn-user">{username}</span>
+    <span class="pwn-desc">Binary Exploitation & Reverse Engineering</span>
+  </div>
+
+  <a href={profileUrl} target="_blank" rel="noopener noreferrer" class="pwn-profile-btn">
+    View pwn.college &rarr;
+  </a>
+</div>
+
+<style>
+  .pwn-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.875rem 1rem;
+    margin-top: 0.75rem;
+    transition: border-color var(--transition);
+  }
+
+  .pwn-card:hover {
+    border-color: var(--accent);
+  }
+
+  .pwn-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.625rem;
+  }
+
+  .pwn-logo-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pwn-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+  }
+
+  .pwn-badge-tag {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+    font-weight: 700;
+  }
+
+  .pwn-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .pwn-user {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .pwn-desc {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+  }
+
+  .pwn-profile-btn {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+
+  .pwn-profile-btn:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+</style>

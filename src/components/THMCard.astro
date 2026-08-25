@@ -1,0 +1,123 @@
+---
+interface Props {
+  username?: string;
+  badgeUrl?: string;
+  profileUrl?: string;
+}
+
+const {
+  username = 'Jst3r',
+  badgeUrl = `https://tryhackme-badges.s3.amazonaws.com/${username}.png`,
+  profileUrl = `https://tryhackme.com/p/${username}`
+} = Astro.props;
+---
+
+<div class="thm-card">
+  <div class="thm-header">
+    <div class="thm-logo-title">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--accent)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 1L2 6v12l10 5 10-5V6L12 1zm0 2.236l7.5 3.75v9.028L12 19.764 4.5 16.014V6.986L12 3.236z"/>
+        <path d="M7.5 8.5h9v1.5h-9zm0 3.5h9v1.5h-9zm0 3.5h6v1.5h-6z"/>
+      </svg>
+      <span class="thm-title">TryHackMe</span>
+    </div>
+    <span class="thm-badge-live">LIVE</span>
+  </div>
+
+  <div class="thm-badge-container">
+    <a href={profileUrl} target="_blank" rel="noopener noreferrer" class="thm-badge-link">
+      <img 
+        src={badgeUrl} 
+        alt={`${username}'s TryHackMe Badge`} 
+        class="thm-dynamic-badge"
+        loading="lazy"
+      />
+    </a>
+  </div>
+
+  <a href={profileUrl} target="_blank" rel="noopener noreferrer" class="thm-profile-btn">
+    View THM Profile &rarr;
+  </a>
+</div>
+
+<style>
+  .thm-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.875rem 1rem;
+    margin-top: 0.75rem;
+    transition: border-color var(--transition);
+  }
+
+  .thm-card:hover {
+    border-color: var(--accent);
+  }
+
+  .thm-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.625rem;
+  }
+
+  .thm-logo-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .thm-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .thm-badge-live {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+    font-weight: 700;
+  }
+
+  .thm-badge-container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .thm-badge-link {
+    display: block;
+    width: 100%;
+  }
+
+  .thm-dynamic-badge {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    display: block;
+  }
+
+  .thm-profile-btn {
+    display: inline-block;
+    margin-top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+
+  .thm-profile-btn:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,438 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HTBCard from '../components/HTBCard.astro';
+import THMCard from '../components/THMCard.astro';
+---
+
+<BaseLayout title="Offensive Labs & CTF Stats" description="Live Hack The Box and TryHackMe profile badges, statistics, and platform progress for Jst3r.">
+  <section class="labs-page-section">
+    <div class="labs-container">
+      
+      <!-- Terminal Hero Banner -->
+      <div class="labs-hero">
+        <div class="terminal-bar">
+          <span class="prompt">~/labs $</span>
+          <span class="cmd">cat platform_overview.sys</span>
+        </div>
+        <h1 class="page-title">Offensive Security Labs</h1>
+        <p class="page-subtitle">
+          Live statistics, official badge sync, and platform progress across 
+          <strong>Hack The Box</strong> and <strong>TryHackMe</strong> for <strong>Jst3r</strong>.
+        </p>
+      </div>
+
+      <div class="platform-tabs">
+        <button class="tab-btn active" data-filter="all">All Platforms</button>
+        <button class="tab-btn htb-tab" data-filter="htb">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Hack The Box
+        </button>
+        <button class="tab-btn thm-tab" data-filter="thm">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L2 6v12l10 5 10-5V6L12 1z"/></svg>
+          TryHackMe
+        </button>
+      </div>
+
+      <!-- Side-by-Side Dual Platform Grid -->
+      <div class="platforms-grid" id="platforms-grid">
+        
+        <!-- Hack The Box Panel -->
+        <div class="platform-card htb-card-panel" data-platform="htb">
+          <div class="card-header">
+            <div class="brand">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#9fef00" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.996 0L1.779 5.899v12.202l10.217 5.899 10.225-5.899V5.899L11.996 0zm7.884 16.658l-7.884 4.551-7.876-4.551V7.342l7.876-4.55 7.884 4.55v9.316z"/>
+                <path d="M12 9.406l-4.148 2.395v4.79L12 18.986l4.148-2.395v-4.79L12 9.406z"/>
+              </svg>
+              <span>Hack The Box</span>
+            </div>
+            <span class="live-tag htb-tag">LIVE BADGE</span>
+          </div>
+
+          <div class="badge-display">
+            <a href="https://app.hackthebox.com/users/2051959" target="_blank" rel="noopener noreferrer">
+              <img 
+                src="https://www.hackthebox.eu/badge/image/2051959" 
+                alt="Jst3r's Official HTB Badge" 
+                class="large-badge"
+              />
+            </a>
+          </div>
+
+          <div class="platform-metrics">
+            <div class="m-row">
+              <span>Username</span>
+              <strong class="htb-green">Jst3r</strong>
+            </div>
+            <div class="m-row">
+              <span>HTB Rank</span>
+              <strong>Hacker</strong>
+            </div>
+            <div class="m-row">
+              <span>User / Root Owns</span>
+              <strong>2 User | 1 Root</strong>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <a href="https://app.hackthebox.com/users/2051959" target="_blank" rel="noopener noreferrer" class="btn htb-btn">
+              HTB Profile &rarr;
+            </a>
+            <a href="https://app.hackthebox.com/users/2051959?tab=activity" target="_blank" rel="noopener noreferrer" class="btn htb-outline-btn">
+              Activity Stream &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- TryHackMe Panel -->
+        <div class="platform-card thm-card-panel" data-platform="thm">
+          <div class="card-header">
+            <div class="brand">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#ff2525" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 1L2 6v12l10 5 10-5V6L12 1zm0 2.236l7.5 3.75v9.028L12 19.764 4.5 16.014V6.986L12 3.236z"/>
+                <path d="M7.5 8.5h9v1.5h-9zm0 3.5h9v1.5h-9zm0 3.5h6v1.5h-6z"/>
+              </svg>
+              <span class="thm-red">TryHackMe</span>
+            </div>
+            <span class="live-tag thm-tag">LIVE BADGE</span>
+          </div>
+
+          <div class="badge-display">
+            <a href="https://tryhackme.com/p/Jst3r" target="_blank" rel="noopener noreferrer">
+              <img 
+                src="https://tryhackme-badges.s3.amazonaws.com/Jst3r.png" 
+                alt="Jst3r's Official TryHackMe Badge" 
+                class="large-badge"
+              />
+            </a>
+          </div>
+
+          <div class="platform-metrics">
+            <div class="m-row">
+              <span>Username</span>
+              <strong class="thm-red">Jst3r</strong>
+            </div>
+            <div class="m-row">
+              <span>Platform</span>
+              <strong>TryHackMe Labs</strong>
+            </div>
+            <div class="m-row">
+              <span>Profile URL</span>
+              <strong>tryhackme.com/p/Jst3r</strong>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <a href="https://tryhackme.com/p/Jst3r" target="_blank" rel="noopener noreferrer" class="btn thm-btn">
+              TryHackMe Profile &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .labs-page-section {
+    min-height: calc(100vh - var(--header-height));
+    padding: 3rem 1.5rem;
+    background: var(--bg-primary);
+  }
+
+  .labs-container {
+    max-width: 1060px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .labs-hero {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+  }
+
+  .terminal-bar {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prompt {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .cmd {
+    color: var(--text-secondary);
+    margin-left: 0.35rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    max-width: 680px;
+    line-height: 1.6;
+  }
+
+  .page-subtitle strong {
+    color: var(--text-primary);
+  }
+
+  /* Platform Tabs */
+  .platform-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .tab-btn.active {
+    background: var(--accent);
+    color: #0a0a0a;
+    border-color: var(--accent);
+  }
+
+  .tab-btn.htb-tab.active {
+    background: #9fef00;
+    color: #0a0a0a;
+    border-color: #9fef00;
+  }
+
+  .tab-btn.thm-tab.active {
+    background: #ff2525;
+    color: #ffffff;
+    border-color: #ff2525;
+  }
+
+  /* Dual Platform Grid */
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .platform-card {
+    background: rgba(12, 18, 14, 0.75);
+    border-radius: 4px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    justify-content: space-between;
+    transition: transform 0.2s ease;
+  }
+
+  .htb-card-panel {
+    border: 1px solid rgba(159, 239, 0, 0.3);
+  }
+
+  .htb-card-panel:hover {
+    border-color: rgba(159, 239, 0, 0.6);
+  }
+
+  .thm-card-panel {
+    background: rgba(22, 12, 14, 0.75);
+    border: 1px solid rgba(255, 37, 37, 0.3);
+  }
+
+  .thm-card-panel:hover {
+    border-color: rgba(255, 37, 37, 0.6);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    color: #9fef00;
+  }
+
+  .thm-red {
+    color: #ff3333 !important;
+  }
+
+  .htb-green {
+    color: #9fef00 !important;
+  }
+
+  .live-tag {
+    font-size: 0.625rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 2px;
+    font-weight: 700;
+  }
+
+  .htb-tag {
+    background: rgba(159, 239, 0, 0.15);
+    color: #9fef00;
+    border: 1px solid rgba(159, 239, 0, 0.4);
+  }
+
+  .thm-tag {
+    background: rgba(255, 37, 37, 0.15);
+    color: #ff3333;
+    border: 1px solid rgba(255, 37, 37, 0.4);
+  }
+
+  .badge-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  .large-badge {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .platform-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+  }
+
+  .m-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+  }
+
+  .m-row strong {
+    color: var(--text-primary);
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    border-radius: 2px;
+    text-align: center;
+    flex: 1;
+    transition: all 0.2s;
+  }
+
+  .htb-btn {
+    background: rgba(159, 239, 0, 0.15);
+    color: #9fef00;
+    border: 1px solid #9fef00;
+  }
+
+  .htb-btn:hover {
+    background: #9fef00;
+    color: #0a0a0a;
+  }
+
+  .htb-outline-btn {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+  }
+
+  .htb-outline-btn:hover {
+    border-color: #9fef00;
+    color: #9fef00;
+  }
+
+  .thm-btn {
+    background: rgba(255, 37, 37, 0.15);
+    color: #ff3333;
+    border: 1px solid #ff3333;
+  }
+
+  .thm-btn:hover {
+    background: #ff3333;
+    color: #ffffff;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  @media (max-width: 768px) {
+    .platforms-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const cards = document.querySelectorAll('.platform-card');
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+
+      cards.forEach((card) => {
+        const platform = card.getAttribute('data-platform');
+        if (filter === 'all' || filter === platform) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

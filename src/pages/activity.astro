@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Activity" description="Hack The Box, TryHackMe, and pwn.college live profiles and stats for Jst3r.">
+  <section class="activity-section">
+    <div class="container">
+      
+      <div class="page-header">
+        <h1 class="page-title">Activity & Profiles</h1>
+        <p class="page-subtitle">
+          Live badges and CTF statistics for <strong>Jst3r</strong> across Hack The Box, TryHackMe, and pwn.college.
+        </p>
+      </div>
+
+      <div class="badges-grid">
+        <!-- Hack The Box -->
+        <div class="badge-card">
+          <div class="card-top">
+            <span class="platform-name">Hack The Box</span>
+            <span class="live-indicator">LIVE SYNC</span>
+          </div>
+          <div class="badge-wrapper">
+            <a href="https://app.hackthebox.com/users/2051959" target="_blank" rel="noopener noreferrer">
+              <img 
+                src="https://www.hackthebox.eu/badge/image/2051959" 
+                alt="Jst3r's HTB Badge" 
+                class="badge-img"
+              />
+            </a>
+          </div>
+          <a href="https://app.hackthebox.com/users/2051959" target="_blank" rel="noopener noreferrer" class="btn">
+            View HTB Profile &rarr;
+          </a>
+        </div>
+
+        <!-- TryHackMe -->
+        <div class="badge-card">
+          <div class="card-top">
+            <span class="platform-name">TryHackMe</span>
+            <span class="live-indicator">LIVE SYNC</span>
+          </div>
+          <div class="badge-wrapper">
+            <a href="https://tryhackme.com/p/Jst3r" target="_blank" rel="noopener noreferrer">
+              <img 
+                src="https://tryhackme-badges.s3.amazonaws.com/Jst3r.png" 
+                alt="Jst3r's TryHackMe Badge" 
+                class="badge-img"
+              />
+            </a>
+          </div>
+          <a href="https://tryhackme.com/p/Jst3r" target="_blank" rel="noopener noreferrer" class="btn">
+            View THM Profile &rarr;
+          </a>
+        </div>
+
+        <!-- pwn.college -->
+        <div class="badge-card">
+          <div class="card-top">
+            <span class="platform-name">pwn.college</span>
+            <span class="live-indicator">PWN & RE</span>
+          </div>
+          <div class="pwn-details">
+            <span class="pwn-name">Jst3r</span>
+            <p class="pwn-desc">Binary Exploitation, Reverse Engineering & Kernel Hacking</p>
+          </div>
+          <a href="https://pwn.college/hacker/Jst3r" target="_blank" rel="noopener noreferrer" class="btn">
+            View pwn.college &rarr;
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .activity-section {
+    padding: 3.5rem 1.5rem;
+    min-height: calc(100vh - var(--header-height));
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .page-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+  }
+
+  .page-subtitle strong {
+    color: var(--text-primary);
+  }
+
+  .badges-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .badge-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .badge-card:hover {
+    border-color: var(--accent);
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .platform-name {
+    color: var(--accent);
+  }
+
+  .live-indicator {
+    font-size: 0.625rem;
+    background: var(--accent-dim);
+    color: var(--accent);
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    border: 1px solid var(--accent);
+  }
+
+  .badge-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .badge-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .pwn-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem 0;
+  }
+
+  .pwn-name {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .pwn-desc {
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .btn {
+    display: block;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 2px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    transition: all 0.2s ease;
+  }
+
+  .btn:hover {
+    background: var(--accent);
+    color: #0a0a0a;
+  }
+
+  @media (max-width: 900px) {
+    .badges-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
