@@ -10,7 +10,7 @@ const posts = (await getCollection('blog'))
 const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
 ---
 
-<BaseLayout title="Home" description="Jst3r — Cybersecurity Researcher, Reverse Engineer, and CTF Player">
+<BaseLayout title="Home" description="Jst3r — Cybersecurity Researcher and CTF Player">
   <section class="home-section">
     <div class="page-layout">
       <!-- Left: About Me -->
@@ -20,7 +20,7 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
             <img src="/profile.jpg" alt="Jst3r" class="avatar-img" />
             <div class="profile-info">
               <h1 class="about-name">Jst3r</h1>
-              <p class="about-role">Security Researcher & Reverse Engineer</p>
+              <p class="about-role">Security Researcher & CTF Player</p>
             </div>
           </div>
 
@@ -39,7 +39,6 @@ const allTags = [...new Set(posts.flatMap((post) => post.data.tags || []))];
               Gallery of failures
             </h2>
             <ul class="achievements-list">
-              <li><span class="bullet">▹</span> 10th in Morocco on CTFtime, playing solo</li>
               <li><span class="bullet">▹</span> 8th place — Cyber Odyssey Finals CTF 2025</li>
               <li><span class="bullet">▹</span> 9th place — International Days of Hacking 2026</li>
             </ul>
